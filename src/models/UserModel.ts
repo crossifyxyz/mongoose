@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { UserStatus, UserRole, User, CurrencyType } from '@crossify/types'
 import { currentUnixTime } from '../utils'
-import { TokenSchema } from '../schemas'
+import { TokenSchema } from '../'
 
 const UserSchema = new Schema<User>({
   // Identity

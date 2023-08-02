@@ -7,9 +7,9 @@
 
 </div>
 
-# CROSSIFY - Types
+# CROSSIFY - Mongoose Config
 
-Types for the CROSSIFY stack.
+Mongoose Schemas/Models/Utils for the CROSSIFY stack.
 
 ## Summary
 
@@ -45,4 +45,4 @@ npm install --save @crossifyxyz/mongoose
 
 ## Summary
 
-This package contains type definitions for LI.FI projects (https://github.com/crossifyxyz).
+This package contains type definitions for CROSSIFY projects (https://github.com/crossifyxyz).

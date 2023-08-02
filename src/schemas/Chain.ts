@@ -2,44 +2,94 @@ import { ChainType, ChainsCache } from '@crossify/types'
 import { Schema } from 'mongoose'
 import { TokenSchema } from '.'
 
-const AddEthereumChainParameterSchema = new Schema({
-  chainId: { type: String, required: true },
-  blockExplorerUrls: { type: [String], required: true },
-  chainName: { type: String, required: true },
-  nativeCurrency: {
-    name: { type: String, required: true },
-    symbol: { type: String, required: true },
-    decimals: { type: Number, required: true },
+// Schema for AddEthereumChainParameter
+const AddEthereumChainParameterSchema = new Schema(
+  {
+    chainId: { type: String },
+    blockExplorerUrls: { type: [String] },
+    chainName: { type: String },
+    nativeCurrency: {
+      name: { type: String },
+      symbol: { type: String },
+      decimals: { type: Number },
+    },
+    rpcUrls: { type: [String] },
   },
-  rpcUrls: { type: [String], required: true },
-})
+  { _id: false }
+)
 
-const ChainBaseSchema = new Schema({
-  key: { type: String, required: true },
-  chainType: { type: String, enum: ChainType, required: true },
-  name: { type: String, required: true },
-  coin: { type: String, required: true },
-  id: { type: Number, required: true },
-  mainnet: { type: Boolean, required: true },
-  logoURI: { type: String, required: false },
-  faucetUrls: { type: [String], required: false },
-})
+// Unified schema for both EVM and Solana chains
+const ExtendedChainSchema = new Schema(
+  {
+    key: { type: String, required: true },
+    chainType: { type: String, enum: ChainType, required: true },
+    name: { type: String, required: true },
+    coin: { type: String, required: true },
+    id: { type: Number, required: true },
+    mainnet: { type: Boolean, required: true },
+    logoURI: { type: String },
+    faucetUrls: { type: [String] },
+    tokenlistUrl: { type: String }, // Optional for Solana
+    metamask: { type: AddEthereumChainParameterSchema }, // Optional for Solana
+    multicallAddress: { type: String }, // Optional for Solana
+    nativeToken: { type: TokenSchema, required: true },
+  },
+  { _id: false }
+)
 
-const EVMChainSchema = new Schema({
-  ...ChainBaseSchema.obj,
-  tokenlistUrl: { type: String },
-  metamask: { type: AddEthereumChainParameterSchema, required: true },
-  multicallAddress: { type: String },
-})
+//=============WAGMI SPECIFIC================
+const RpcUrlsSchema = new Schema(
+  {
+    http: { type: [String], required: true },
+    webSocket: { type: [String] },
+  },
+  { _id: false }
+)
 
-const ExtendedChainSchema = new Schema({
-  ...EVMChainSchema.obj,
-  nativeToken: { type: TokenSchema, required: true },
-})
+const ExtendedWagmiChainSchema = new Schema(
+  {
+    id: { type: Number, required: true },
+    name: { type: String, required: true },
+    network: { type: String, required: true },
+    nativeCurrency: {
+      name: { type: String },
+      symbol: { type: String },
+      decimals: { type: Number },
+    },
+    rpcUrls: {
+      default: { type: RpcUrlsSchema, required: true },
+      public: { type: RpcUrlsSchema, required: true },
+    },
+    blockExplorers: {
+      default: {
+        name: { type: String },
+        url: { type: String },
+      },
+    },
+    contracts: {
+      ensRegistry: {
+        address: { type: String },
+        blockCreated: { type: Number },
+      },
+      ensUniversalResolver: {
+        address: { type: String },
+        blockCreated: { type: Number },
+      },
+      multicall3: {
+        address: { type: String },
+        blockCreated: { type: Number },
+      },
+    },
+    testnet: { type: Boolean },
+    iconUrl: { type: String },
+    iconBackground: { type: String },
+  },
+  { _id: false }
+)
 
-const ChainsCacheSchema = new Schema<ChainsCache>({
+export const ChainsCacheSchema = new Schema<ChainsCache>({
   data: {
-    type: [ExtendedChainSchema],
-    required: true,
+    crossify: { type: [ExtendedChainSchema], required: true },
+    wagmi: { type: [ExtendedWagmiChainSchema], required: true },
   },
 })

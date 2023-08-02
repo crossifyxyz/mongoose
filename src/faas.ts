@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-class DatabaseConnection {
+class CacheDbConnection {
   private dbConnections: Record<string, typeof mongoose | null> = {}
 
   /**
@@ -35,4 +35,4 @@ class DatabaseConnection {
   }
 }
 
-export const DBConnection = new DatabaseConnection()
+export const FaasDbConnect = new CacheDbConnection()
