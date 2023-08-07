@@ -10,8 +10,7 @@ const ReceiptSchema = new Schema<Receipt>({
     required: true,
     immutable: true,
     default: function () {
-      const _t = this as any
-      return String(_t._id)
+      return String(this._id)
     },
   },
   txHash: { type: String, required: true },

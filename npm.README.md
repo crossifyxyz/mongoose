@@ -1,9 +1,9 @@
 ### Installation
 
 ```
-npm i -D --save @crossifyxyz/mongoose
+npm i -D --save @crossify/mongoose
 ```
 
 ### Summary
 
-This package contains type definitions for CROSSIFY projects (https://github.com/crossifyxyz).
+This package contains mongoose configs for CROSSIFY projects (https://github.com/crossifyxyz).
