@@ -1,6 +1,6 @@
 {
   "name": "@crossify/mongoose",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mongoose Schemas/Models/Functions for the CROSSIFY stack",
   "main": "./dist/cjs/index.js",
   "module": "./dist/index.js",
@@ -27,7 +27,8 @@
     "prepublishOnly": "run-s build use:npmReadme && pinst --enable",
     "postpublish": "npm run use:gitReadme && pinst --enable",
     "prepare": "husky install",
-    "release": "standard-version"
+    "release": "standard-version",
+    "postRelease": "git push --follow-tags origin main && npm publish"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -70,7 +71,7 @@
     "url": "https://github.com/crossifyxyz/mongoose"
   },
   "dependencies": {
-    "@crossify/types": "^0.0.1",
+    "@crossify/types": "latest",
     "mongoose": "^7.0.3"
   },
   "devDependencies": {
