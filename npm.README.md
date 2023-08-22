@@ -1,7 +1,7 @@
 ### Installation
 
 ```
-npm i -D --save @crossify/mongoose
+npm i @crossify/mongoose
 ```
 
 ### Summary

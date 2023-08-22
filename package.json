@@ -28,7 +28,7 @@
     "postpublish": "npm run use:gitReadme && pinst --enable",
     "prepare": "husky install",
     "release": "standard-version",
-    "postRelease": "git push --follow-tags origin main && npm publish"
+    "postRelease": "git push --follow-tags origin main"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

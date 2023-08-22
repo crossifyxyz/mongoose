@@ -1,9 +1,14 @@
-import { ChainType, ChainsCache } from '@crossify/types'
+import {
+  AddEthereumChainParameter,
+  Chain,
+  ChainType,
+  ChainsCache,
+} from '@crossify/types'
 import { Schema } from 'mongoose'
 import { TokenSchema } from '.'
 
 // Schema for AddEthereumChainParameter
-const AddEthereumChainParameterSchema = new Schema(
+const AddEthereumChainParameterSchema = new Schema<AddEthereumChainParameter>(
   {
     chainId: { type: String },
     blockExplorerUrls: { type: [String] },
@@ -19,7 +24,7 @@ const AddEthereumChainParameterSchema = new Schema(
 )
 
 // Unified schema for both EVM and Solana chains
-const ExtendedChainSchema = new Schema(
+const ExtendedChainSchema = new Schema<Chain>(
   {
     key: { type: String, required: true },
     chainType: { type: String, enum: ChainType, required: true },
@@ -37,59 +42,6 @@ const ExtendedChainSchema = new Schema(
   { _id: false }
 )
 
-//=============WAGMI SPECIFIC================
-const RpcUrlsSchema = new Schema(
-  {
-    http: { type: [String], required: true },
-    webSocket: { type: [String] },
-  },
-  { _id: false }
-)
-
-const ExtendedWagmiChainSchema = new Schema(
-  {
-    id: { type: Number, required: true },
-    name: { type: String, required: true },
-    network: { type: String, required: true },
-    nativeCurrency: {
-      name: { type: String },
-      symbol: { type: String },
-      decimals: { type: Number },
-    },
-    rpcUrls: {
-      default: { type: RpcUrlsSchema, required: true },
-      public: { type: RpcUrlsSchema, required: true },
-    },
-    blockExplorers: {
-      default: {
-        name: { type: String },
-        url: { type: String },
-      },
-    },
-    contracts: {
-      ensRegistry: {
-        address: { type: String },
-        blockCreated: { type: Number },
-      },
-      ensUniversalResolver: {
-        address: { type: String },
-        blockCreated: { type: Number },
-      },
-      multicall3: {
-        address: { type: String },
-        blockCreated: { type: Number },
-      },
-    },
-    testnet: { type: Boolean },
-    iconUrl: { type: String },
-    iconBackground: { type: String },
-  },
-  { _id: false }
-)
-
 export const ChainsCacheSchema = new Schema<ChainsCache>({
-  data: {
-    crossify: { type: [ExtendedChainSchema], required: true },
-    wagmi: { type: [ExtendedWagmiChainSchema], required: true },
-  },
+  data: { type: [ExtendedChainSchema], required: true, _id: false },
 })
