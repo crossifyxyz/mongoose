@@ -29,7 +29,7 @@ yarn add @crossify/mongoose
 or
 
 ```bash
-npm install --save @crossify/mongoose
+npm install @crossify/mongoose
 ```
 
 ## How to make a release
@@ -38,9 +38,9 @@ npm install --save @crossify/mongoose
 2. Merge PR into main
 3. Checkout main
 4. `git pull`
-5. `yarn release`
+5. `npm run release`
 6. Make sure everything looks good (e.g. in CHANGELOG.md)
-7. `git push --follow-tags`
+7. `npm run postRelease`
 8. Done
 
 ## Summary
