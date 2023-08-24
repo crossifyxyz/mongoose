@@ -22,6 +22,10 @@ const CacheBaseSchema = new Schema<CacheBase>(
       required: true,
       default: () => currentUnixTime(),
     },
+    idle: {
+      type: Boolean,
+      default: true,
+    },
   },
   { discriminatorKey: 'type' }
 )
