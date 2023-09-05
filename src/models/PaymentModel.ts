@@ -23,19 +23,15 @@ const PaymentSchema = new Schema<Payment>({
     type: String,
     required: true,
   },
-  type: { type: String, enum: PaymentType, default: PaymentType.POS },
+  type: { type: String, enum: PaymentType, default: PaymentType.SINGLE },
+  advanced: { type: Boolean, default: false },
   status: {
     type: String,
     enum: PaymentStatus,
     default: function () {
       const doc = this as Payment
-      switch (doc.type) {
-        case PaymentType.POS:
-          return PaymentStatus.AWAITING
-        case PaymentType.PRODUCT:
-        case PaymentType.DONATION:
-          return PaymentStatus.OPEN
-      }
+      if (doc.type === PaymentType.SINGLE) return PaymentStatus.AWAITING
+      else return PaymentStatus.OPEN
     },
   },
   title: { type: String },
