@@ -1,11 +1,13 @@
 import { Schema, model } from 'mongoose'
-import { UserStatus, UserRole, User, CurrencyType } from '@crossify/types'
-import { currentUnixTime } from '../utils'
 import {
-  StaticTokenSchema,
-  TokenAmountSchema,
-  TokenBalancesCacheSchema,
-} from '../'
+  UserStatus,
+  UserRole,
+  User,
+  CurrencyType,
+  ChainType,
+} from '@crossify/types'
+import { currentUnixTime } from '../utils'
+import { StaticTokenSchema, TokenBalancesCacheSchema } from '../'
 
 const UserSchema = new Schema<User>({
   // Identity
@@ -17,6 +19,7 @@ const UserSchema = new Schema<User>({
       return String(this._id)
     },
   },
+  chainType: { type: String, enum: ChainType, required: true, immutable: true },
   address: { type: String, required: true, immutable: true },
   apiKey: { type: String },
   role: { type: String, enum: UserRole, default: UserRole.USER },
