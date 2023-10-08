@@ -25,22 +25,20 @@ export const StaticTokenSchema = new Schema<StaticToken>(
 // Schema for Token (extends StaticToken)
 export const TokenSchema = new Schema<Token>(
   {
-    ...StaticTokenSchema.obj, // Include all fields from StaticTokenSchema
     priceUSD: { type: String },
   },
   { _id: false }
-)
+).add(StaticTokenSchema)
 
 // Schema for TokenAmount (extends Token)
 export const TokenAmountSchema = new Schema<TokenAmount>(
   {
-    ...TokenSchema.obj, // Include all fields from TokenSchema
     amount: { type: String },
     amountUSD: { type: String },
     blockNumber: { type: Number },
   },
   { _id: false }
-)
+).add(TokenSchema)
 
 export const TokensCacheSchema = new Schema<TokensCache>({
   data: {
@@ -55,6 +53,10 @@ export const TokenBalancesCacheSchema = new Schema<TokenBalancesCache>(
   {
     data: [TokenAmountSchema],
     updatedAt: { type: Number, default: () => currentUnixTime() },
+    idle: {
+      type: Boolean,
+      default: true,
+    },
   },
   { _id: false }
 )
