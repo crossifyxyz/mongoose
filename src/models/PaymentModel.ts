@@ -16,7 +16,8 @@ const PaymentSchema = new Schema<Payment>({
     required: true,
     immutable: true,
     default: function () {
-      return String(this._id)
+      const t = this as any
+      return String(t._id)
     },
   },
   creatorAddress: {

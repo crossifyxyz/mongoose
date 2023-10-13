@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/crossifyxyz/mongoose/compare/v0.0.5...v0.0.6) (2023-10-13)
+
+
+### Features
+
+* chainType for user ([77421cd](https://github.com/crossifyxyz/mongoose/commit/77421cd24ad9bbdf8405d724c01dcf7860cfaefc))
+
+
+### Bug Fixes
+
+* prettier plugin ([d49d9d6](https://github.com/crossifyxyz/mongoose/commit/d49d9d6d8c62d6cd5d33cb59ee174d51ada0ebe8))
+
 ### [0.0.5](https://github.com/crossifyxyz/mongoose/compare/v0.0.4...v0.0.5) (2023-08-24)
 
 ### [0.0.4](https://github.com/crossifyxyz/mongoose/compare/v0.0.3...v0.0.4) (2023-08-22)

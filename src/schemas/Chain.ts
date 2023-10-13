@@ -38,6 +38,7 @@ const ExtendedChainSchema = new Schema<Chain>(
     metamask: { type: AddEthereumChainParameterSchema }, // Optional for Solana
     multicallAddress: { type: String }, // Optional for Solana
     nativeToken: { type: TokenSchema, required: true },
+    rpcUrls: { type: [String] }, // Optional for Solana
   },
   { _id: false }
 )
