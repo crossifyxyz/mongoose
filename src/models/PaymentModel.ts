@@ -52,7 +52,7 @@ const PaymentSchema = new Schema<Payment>({
           return doc.currencyType === CurrencyType.FIAT
         },
       },
-      amount: { type: Number, required: true },
+      amount: { type: String, required: true },
     },
     _id: false,
   },
