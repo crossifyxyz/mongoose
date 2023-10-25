@@ -1,6 +1,6 @@
 {
   "name": "@crossify/mongoose",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Mongoose Schemas/Models/Functions for the CROSSIFY stack",
   "main": "./dist/cjs/index.js",
   "module": "./dist/index.js",

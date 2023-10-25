@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/crossifyxyz/mongoose/compare/v0.0.7...v0.0.8) (2023-10-25)
+
+
+### Bug Fixes
+
+* track types version ([83204d2](https://github.com/crossifyxyz/mongoose/commit/83204d2f6bbc1eae2e404fbf099b4471b8ce8161))
+
 ### [0.0.7](https://github.com/crossifyxyz/mongoose/compare/v0.0.6...v0.0.7) (2023-10-24)
 
 ### [0.0.6](https://github.com/crossifyxyz/mongoose/compare/v0.0.5...v0.0.6) (2023-10-13)
