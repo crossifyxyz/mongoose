@@ -71,7 +71,7 @@
     "url": "https://github.com/crossifyxyz/mongoose"
   },
   "dependencies": {
-    "@crossify/types": "0.0.7",
+    "@crossify/types": "latest",
     "mongoose": "^7.5.0"
   },
   "devDependencies": {
